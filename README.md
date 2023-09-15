@@ -83,6 +83,8 @@ Analicemos cada una de estas categorías.
 
 ## General Headers [Encabezados Generales](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html)
 
+Los encabezados generales se utilizan tanto en las solicitudes como en las respuestas HTTP. Son contextuales y están acostumbrados a contener una descripcion del mensaje.
+
 
   
 
