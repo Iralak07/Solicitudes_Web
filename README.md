@@ -1,9 +1,10 @@
 # Solicitudes_Web
+
 Las solicitudes web (web request) son fundamentales para la comunicación entre cliente y servidor 
 
 Una solicitud web, se realiza principalmente a travez el protocolo HTTP (Hypertext Transfer Protocol). La mayoría de las comunicaciones por Internet se realizan con solicitudes web a través del protocolo HTTP. 
 
-Ques es el protocolo HTTP?
+`#`Ques es el protocolo HTTP?
 
   Es un protocolo de nivel de aplicación utilizado para acceder a los recursos de la World Wide Web. El término significa texto que contiene enlaces a otros recursos y texto que los lectores pueden interpretar fácilmente (hypertext). La comunicación HTTP consiste en un cliente y un servidor, donde el cliente solicita al servidor un recurso. El servidor procesa las solicitudes y devuelve el recurso solicitado.
   
@@ -28,7 +29,7 @@ Ques es el protocolo HTTP?
 
   Fragments: Los fragmentos son procesados por los navegadores en el lado del cliente para localizar secciones dentro del recurso principal (por ejemplo, un encabezado o sección en la página).
 
-# Protocolo seguro de transferencia de hipertexto (HTTPS)
+`#` Protocolo seguro de transferencia de hipertexto (HTTPS)
 
 Antes que nada, veremos cómo se envían y procesan las solicitudes HTTP. Sin embargo, uno de los inconvenientes importantes de HTTP es que todos los datos se transfieren en texto no cifrado. Esto significa que cualquier persona entre el origen y el destino puede realizar un ataque Man-in-the-middle (MiTM) para ver los datos transferidos.
 
@@ -36,12 +37,13 @@ Para contrarrestar este problema, se creó el protocolo HTTPS (HTTP Secure), en 
 
 Los sitios web que aplican HTTPS se pueden identificar a través de su URL (por ejemplo, https://www.google.com), así como el icono de candado en la barra de direcciones del navegador web, a la izquierda de la URL: https://
 
-# Solicitudes y respuestas HTTP (request and response)
+`#` Solicitudes y respuestas HTTP (request and response)
+
 Las comunicaciones HTTP consisten principalmente en una solicitud HTTP y una respuesta HTTP. Una solicitud HTTP es realizada por el cliente (navegador) y es procesada por el servidor (por ejemplo, servidor web). Las solicitudes contienen todos los detalles que requerimos del servidor, incluido el recurso (por ejemplo, URL, ruta, parámetros), cualquier dato de solicitud, encabezados u opciones que especifiquemos, y muchas otras opciones. 
 
 Una vez que el servidor recibe la solicitud HTTP, la procesa y responde enviando la respuesta HTTP, que contiene el código de respuesta. 
 
-# Solicitud HTTP
+`#` Solicitud HTTP
 
 ![raw_request](https://github.com/Iralak07/Solicitudes_Web/assets/99599597/99a7dc46-108a-4ba9-84e0-182eacd62abd)
 
@@ -55,7 +57,7 @@ Version: 	El tercer y último campo se utiliza para indicar la versión HTTP (HT
   
 El siguiente conjunto de líneas contiene pares de valores de encabezado HTTP,  y muchos otros encabezados posibles. Estos encabezados se utilizan para especificar varios atributos de una solicitud. Los encabezados terminan con una nueva línea, que es necesaria para que el servidor valide la solicitud. Finalmente, una solicitud puede terminar con el cuerpo y los datos de la solicitud.
 
-# Respuesta HTTP
+`#` Respuesta HTTP
 
 Una vez que el servidor procesa la solicitud, envía su respuesta. A continuación se muestra un ejemplo de respuesta HTTP:
 
@@ -64,6 +66,25 @@ Una vez que el servidor procesa la solicitud, envía su respuesta. A continuaci�
 La primera línea de una respuesta HTTP contiene dos campos separados por espacios. El primero es la version, y el segundo denota el codigo de respuesta. Los códigos de respuesta se utilizan para determinar el estado de la solicitud, en la siguiente direccion pueden acceder a todos los codigos de respuestas utilizados (https://developer.mozilla.org/es/docs/Web/HTTP/Status). 
 
 Finalmente, la respuesta puede terminar con un cuerpo de respuesta, que está separado por una nueva línea después de los encabezados. El cuerpo de respuesta generalmente se define como código. Sin embargo, también puede responder con otros tipos de código, como recursos del sitio web, como imágenes, hojas de estilo o scripts, o incluso un documento como un documento PDF alojado en el servidor web.
+
+`#` Encabezados HTTP
+
+Los encabezados HTTP pasan información entre el cliente y el servidor. Algunos encabezados solo se usan con solicitudes o respuestas, mientras que otros encabezados generales son comunes a ambos.
+
+Los encabezados pueden tener uno o varios valores, anexados después del nombre del encabezado y separados por dos puntos. Podemos dividir los encabezados en las siguientes categorías:
+
+-  General Headers
+-  Entity Headers
+-  Request Headers
+-  Response Headers
+-  Security Headers
+
+Analicemos cada una de estas categorías.
+
+## General Headers [Encabezados Generales](https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html)
+
+
+  
 
 
 
