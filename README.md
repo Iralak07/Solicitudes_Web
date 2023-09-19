@@ -85,11 +85,93 @@ Analicemos cada una de estas categorías.
 
 Los encabezados generales se utilizan tanto en las solicitudes como en las respuestas HTTP. Son contextuales y están acostumbrados a contener una descripcion del mensaje.
 
+## Entity headers (Encabezados de entidad)
+
+ Los mensajes de solicitud y respuesta PUEDEN transferir una entidad si no es de otra manera Restringido por el método de solicitud o el código de estado de respuesta. Una entidad consta de campos de encabezado de entidad y un cuerpo de entidad, aunque algunos Las respuestas solo incluirán los encabezados de entidad.
+ 
+  Los campos de encabezado de entidad definen la metainformación sobre el cuerpo de entidad o, si no hay ningún cuerpo presente, sobre el recurso identificado por la solicitud. Parte de esta metainformación es OPCIONAL; algunos podrían ser REQUERIDOS por partes de esta especificación.
+
+       entity-header  = Allow                    
+                      | Content-Encoding         
+                      | Content-Language         
+                      | Content-Length           
+                      | Content-Location         
+                      | Content-MD5              
+                      | Content-Range           
+                      | Content-Type             
+                      | Expires                 
+                      | Last-Modified            
+                      | extension-header
 
   
+## Request headers (Encabezados de solicitud)
+
+  El cliente envía encabezados de solicitud en una transacción HTTP. Los siguientes encabezados se ven comúnmente en las solicitudes HTTP.
+
+    - Host: Se utiliza para especificar el host que se consulta para el recurso. Puede ser un nombre de dominio o una dirección IP. Los servidores HTTP se pueden configurar para alojar diferentes sitios web, que se revelan en función del nombre de host. Esto hace que el encabezado de host sea un destino de enumeración importante, ya que puede indicar la existencia de otros hosts en el servidor de destino.
+
+    - User-Agent: El encabezado se utiliza para describir el cliente que solicita recursos. Este encabezado puede revelar mucho sobre el cliente, como el navegador, su versión y el sistema operativo.
+
+    - Referer: Indica de dónde proviene la solicitud actual. Por ejemplo, hacer clic en un enlace de los resultados de búsqueda de Google haría la referencia. Confiar en este encabezado puede ser peligroso, ya que puede manipularse fácilmente, lo que lleva a consecuencias no deseadas.
+  
+    - Accept	El encabezado describe qué tipos de medios puede entender el cliente. Puede contener varios tipos de medios separados por comas. El valor significa que se aceptan todos los tipos de medios.Accept */*
+
+    - Cookie: PHPSESSID=b4e4fbd93540, 	Contiene pares cookie-value en el formato . Una cookie es un dato almacenado en el lado del cliente y en el servidor, que actúa como un identificador. Estos se pasan al servidor por solicitud, manteniendo así el acceso del cliente. Las cookies también pueden servir para otros propósitos, como guardar las preferencias del usuario o el seguimiento de la sesión. Puede haber varias cookies en un solo encabezado separadas por un punto y coma. Cookie: cookie1=valor1; cookie2=valor2; cookie3=valor3
+
+    - Authorization: BASIC cGFzc3dvcmQK, Otro método para que el servidor identifique a los clientes. Después de una autenticación correcta, el servidor devuelve un token único para el cliente. A diferencia de las cookies, los tokens se almacenan solo en el lado del cliente y el servidor los recupera por solicitud. Existen varios tipos de autenticación basados en el servidor web y el tipo de aplicación utilizados.
+
+## Response Headers (Encabezados de respuesta)
+
+Los encabezados de respuesta se utilizan para proporcionar más contexto sobre la respuesta. Los siguientes encabezados se ven comúnmente en las respuestas HTTP.
+
+  - Server: Apache/2.2.14 (Win32)	Contiene información sobre el servidor HTTP que procesó la solicitud. Se puede utilizar para obtener información sobre el servidor, como su versión, y enumerarla más.
+
+  - Set-Cookie: PHPSESSID=b4e4fbd93540	Contiene las cookies necesarias para la identificación del cliente. Los navegadores analizan las cookies y las almacenan para futuras solicitudes. Este encabezado sigue el mismo formato que el encabezado de solicitud.Cookie
+
+  - WWW-Authenticate: BASIC realm="localhost"	Notifica al cliente sobre el tipo de autenticación necesaria para tener acceso al recurso solicitado.
+
+## Security Headers (Encabezados de seguridad)
+
+Por último, tenemos los encabezados de seguridad. Con el aumento de la variedad de navegadores y ataques basados en la web, era necesario definir ciertos encabezados que mejoraran la seguridad. Los encabezados de seguridad HTTP deben ser seguidos por el navegador mientras se accede al sitio web. 
 
 
+# Métodos y códigos HTTP
 
+TTP admite varios métodos para acceder a un recurso. En el protocolo HTTP, varios métodos de solicitud permiten al explorador enviar información, formularios o archivos al servidor. Estos métodos se utilizan, entre otras cosas, para decirle al servidor cómo procesar la solicitud que enviamos y cómo responder.
 
+## Métodos de solicitud
+
+  - Metodo "GET":	Solicita un recurso específico. Se pueden pasar datos adicionales al servidor a través de cadenas de consulta en la URL (http://ejemplo.com/recurso?nombre=Juan&edad=30)
+
+  - Metodo "POST": Envía datos al servidor. Puede manejar múltiples tipos de entrada, como texto, PDF y otras formas de datos binarios. Estos datos se anexan en el cuerpo de la solicitud presente después de los encabezados. El método POST se usa comúnmente cuando se envía información (por ejemplo, formularios / inicios de sesión) o se cargan datos en un sitio web, como imágenes o documentos.
+
+  - Metodo "HEAD": Solicita los encabezados que se devolverían si se realizara una solicitud GET al servidor. No devuelve el cuerpo de la solicitud y generalmente se realiza para verificar la longitud de la respuesta antes de descargar recursos.
+
+  - Metodo "PUT": Crea nuevos recursos en el servidor. Permitir este método sin los controles adecuados puede llevar a la carga de recursos maliciosos.
+
+  - Metodo "DELETE": Elimina un recurso existente en el servidor web. Si no se protege adecuadamente, puede conducir a la denegación de servicio (DoS) mediante la eliminación de archivos críticos en el servidor web.
+
+  - Metodo "OPTIONS": Devuelve información sobre el servidor, como los métodos aceptados por él.
+
+## Códigos de respuesta
+
+Los códigos de estado HTTP se utilizan para indicar al cliente el estado de su solicitud. Un servidor HTTP puede devolver cinco tipos de códigos de respuesta:
+
+Tipo	Descripción
+- 1xx	Proporciona información y no afecta al procesamiento de la solicitud.
+- 2xx	Se devuelve cuando una solicitud se realiza correctamente.
+- 3xx	Se devuelve cuando el servidor redirige al cliente.
+- 4xx	Significa solicitudes incorrectas. Por ejemplo, solicitar un recurso que no existe o solicitar un formato incorrecto.from the client
+- 5xx	Devuelto cuando hay algún problema en sí.with the HTTP server
+- 
+Los siguientes son algunos de los ejemplos más comunes de cada uno de los tipos de método HTTP anteriores:
+
+Código	                    Descripción
+- 200 OK	                  Se devuelve en una solicitud correcta y el cuerpo de respuesta suele contener el recurso solicitado.
+- 302 Found	                Redirige al cliente a otra URL. Por ejemplo, redirigir al usuario a su panel después de un inicio de sesión exitoso.
+- 400 Bad Request	          Se devuelve al encontrar solicitudes con formato incorrecto, como solicitudes con terminadores de línea faltantes.
+- 403 Forbidden	            Significa que el cliente no tiene acceso adecuado al recurso. También se puede devolver cuando el servidor detecta entradas maliciosas del usuario.
+- 404 Not Found	            Se devuelve cuando el cliente solicita un recurso que no existe en el servidor.
+- 500 Internal Server Error	Se devuelve cuando el servidor no puede procesar la solicitud.
 
 
